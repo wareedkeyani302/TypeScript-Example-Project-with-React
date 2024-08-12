@@ -26,7 +26,7 @@ const App: FC<AppProps> = ({ title }) => {
     setUserName(event.target.value);
   }
   const filteredUsers = users.filter((user) =>
-    `${user.name.first} ${user.name.last}`.toLowerCase().includes(searchUser.toLowerCase())
+    ` ${user.name.title} ${user.name.first} ${user.name.last}`.toLowerCase().includes(searchUser.toLowerCase())
   );
 
   return (
