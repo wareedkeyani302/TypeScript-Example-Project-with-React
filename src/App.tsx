@@ -7,7 +7,7 @@ import { Button, Input } from "antd";
 const App: FC<AppProps> = ({ title }) => {
   const [users, setUsers] = useState<Users[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [userName, setUserName] = useState ('');
+  const [userName, setUserName] = useState ('');
   const [searchUser, setSearchUser] = useState ('');
 
   const handleShowUsers = async () => {
@@ -22,7 +22,8 @@ const App: FC<AppProps> = ({ title }) => {
     }
   };
   const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
-    setSearchUser (event.target.value)
+    setSearchUser (event.target.value);
+    setUserName(event.target.value);
   }
   const filteredUsers = users.filter((user) =>
     `${user.name.first} ${user.name.last}`.toLowerCase().includes(searchUser.toLowerCase())
@@ -35,7 +36,7 @@ const App: FC<AppProps> = ({ title }) => {
       <Button onClick={handleShowUsers} loading={isLoading}>Show Users</Button>
       <Input type="text" onChange={handleChange} style={{width: '50%'}} />
       </div>
-      {/* <div className="user-text">{userName}</div> */}
+      <div className="user-text">{userName}</div>
       <ul className="user-grid">
         {filteredUsers.map(({ login, name, email, gender, phone, picture, id }) => (
           <User
